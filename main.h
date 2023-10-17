@@ -1,29 +1,50 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-/* _printf */
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <limits.h>
+#include <unistd.h>
+
+
+
+/**
+ * struct format - match the conversion specifiers for printf
+ * @id: type char pointer of the specifier i.e (l, h) for (d, i, u, o, x, X)
+ * @f: type pointer to function for the conversion specifier
+ *
+ */
+
+typedef struct format
+{
+	char *id;
+	int (*f)();
+} convert_match;
+
+int printf_pointer(va_list val);
+int printf_hex_aux(unsigned long int num);
+int printf_HEX_aux(unsigned int num);
+int printf_exclusive_string(va_list val);
+int printf_HEX(va_list val);
+int printf_hex(va_list val);
+int printf_oct(va_list val);
+int printf_unsigned(va_list args);
+int printf_bin(va_list val);
+int printf_srev(va_list args);
+int printf_rot13(va_list args);
+int printf_int(va_list args);
+int printf_dec(va_list args);
+int _strlen(char *s);
+int *_strcpy(char *dest, char *src);
+int _strlenc(const char *s);
+int rev_string(char *s);
+int _strlenc(const char *s);
+int printf_37(void);
+int printf_char(va_list val);
+int printf_string(va_list val);
+int _putchar(char c);
 int _printf(const char *format, ...);
 
-/* write functions */
-int _putchar(char c);
-int handle_string(char *str);
-int handle_integer(int num);
-int handle_format(const char *format, va_list args);
-int print_int(int n);
-int print_decimal(int n);
-
-
-/* formatting */
-const char *skip_format_specifier(const char *format);
-int is_format_specifier(char c);
-int _strlen(char *str);
-char *_strcpy(char *destination, const char *source);
-
-
-#endif /* !MAIN_H */
-
+#endif
